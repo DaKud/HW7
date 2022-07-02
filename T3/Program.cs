@@ -11,9 +11,9 @@
 
 void Print (int[,] array)
 {
-for (int i = 0; i < array.GetLength(1); i++)
+for (int i = 0; i < array.GetLength(0); i++)
   {
-    for (int j = 0; j < array.GetLength(0); j++)
+    for (int j = 0; j < array.GetLength(1); j++)
     {
       Console.Write(array[i,j] + " ");
     }
@@ -23,36 +23,33 @@ for (int i = 0; i < array.GetLength(1); i++)
 
 void Fill(int[,] array)
 {
-  for (int i = 0; i < array.GetLength(1); i++)
+  for (int i = 0; i < array.GetLength(0); i++)
   {
-    for (int j = 0; j < array.GetLength(0); j++)
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-      array[i,j] = new Random().Next(1,5);
+      array[i,j] = new Random().Next(0,5);
     }
   }
 }
 
 Console.Write("Insert 1st element:");
-int n = int.Parse(Console.ReadLine()); 
-Console.Write("Insert 2nd element:");
 int m = int.Parse(Console.ReadLine()); 
+Console.Write("Insert 2nd element:");
+int n = int.Parse(Console.ReadLine()); 
 int[,] mass = new int[m, n];
 
 Fill(mass);
 Print(mass);
 
+
  
-// for (int i = 0; i < m; i++) 
-// {
-//     int scalarsum = 0;
-    
-//     for (int j = 0; j < n; j++)
-//     {
-//         scalarsum += mass[j, i];
-        
-//     }
-//     Console.WriteLine($"Cреднее арифметическое элементов столбца {i+1} = {(float)scalarsum/n+m}");
-    
-//     }
+for (int i = 0; i < mass.GetLength(0); i++) 
+{
+  int sclr = 0;
 
-
+ for (int t = 0; t < mass.GetLength(1); t++)
+  {
+  sclr += mass[t, i];
+  }
+Console.WriteLine($"Scalsr sum of column elements {i + 1} = {(float)sclr/m}");
+}
